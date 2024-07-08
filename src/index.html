@@ -1,0 +1,21 @@
+<html>
+    <head></head>
+    <body>
+        <div id="logs"></div>
+    </body>
+<script>
+    function reload() {
+        fetch('/logs/live')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('logs').innerHTML = `<pre>${data}</pre>`;
+            })
+    }
+
+    if (window.location.pathname === '/logs') {
+        reload();
+        setInterval(reload, 10000);
+    }
+</script>
+
+</html>

@@ -1,3 +1,4 @@
-[2024-07-08 14:20:07.541Z] Starting Process
-[2024-07-08 14:20:07.544Z] Assets: AA, HDB, INDA, EPI
-[2024-07-08 14:20:07.544Z] Completing Process
+[2024-07-08 15:45:03.021Z] Starting Process
+[2024-07-08 15:45:03.023Z] Assets: AA, HDB, INDA, EPI
+[2024-07-08 15:45:03.023Z] Market is open.
+[2024-07-08 15:46:00.467Z] Fetching market quotes: AA,HDB,INDA,EPI

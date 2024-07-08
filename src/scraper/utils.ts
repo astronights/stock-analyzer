@@ -3,6 +3,11 @@ import { promises as fsPromises } from 'fs';
 
 const logDir = './src/logs';
 
+export const isMarketHours = (timestamp: Date) => {
+    const formattedTime = timestamp.toISOString().split('T')[1].split('.')[0];
+    return (formattedTime >= '13:30:00') && (formattedTime < '20:00:00')
+}
+
 export const log = (timestamp: Date, message: string) => {
     const formattedTime = timestamp.toISOString().replace('T', ' ');
     const curDate = formattedTime.split(' ')[0].split('-').join('_');

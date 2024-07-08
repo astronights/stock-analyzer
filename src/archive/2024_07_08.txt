@@ -1,3 +1,4 @@
-[2024-07-08 14:19:46.506Z] Starting Process
-[2024-07-08 14:19:46.510Z] Assets: AA, HDB, INDA, EPI
-[2024-07-08 14:19:46.510Z] Completing Process
+[2024-07-08 15:43:58.658Z] Assets: AA, HDB, INDA, EPI
+[2024-07-08 15:43:58.656Z] Starting Process
+[2024-07-08 15:43:58.658Z] Market is open.
+[2024-07-08 15:44:00.691Z] Fetching market quotes: Mon Jul 08 2024 15:44:00 GMT+0800 (Singapore Standard Time)
