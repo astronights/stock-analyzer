@@ -1,0 +1,25 @@
+{
+  "name": "daily-cryptic",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/react": "^2.8.2",
+    "mongoose": "^8.4.5",
+    "next": "^14.2.4",
+    "react-icons": "^5.2.1",
+    "sass": "^1.77.6",
+    "yahoo-finance2": "^2.11.3"
+  },
+  "devDependencies": {
+    "@types/node": "20.14.10",
+    "@types/react": "18.3.3",
+    "typescript": "5.5.3"
+  }
+}
