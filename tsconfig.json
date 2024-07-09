@@ -14,5 +14,10 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "netlify/functions/**/*.ts"
+  ]
+  
 }
