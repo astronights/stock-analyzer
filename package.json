@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "clean": "rimraf build",
-    "build": "npm run clean && tsc",
-    "start": "npm run build && node build/app.js",
-    "start-netlify": "node netlify/functions/server.js"
+    "build": "npm run clean && tsc && npm run copy-html",
+    "start": "node build/netlify/functions/server.js",
+    "dev": "tsc-watch --onSuccess 'node build/netlify/functions/server.js'",
+    "copy-html": "cpx src/index.html build/src"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@types/node": "20.14.10",
+    "cpx": "^1.5.0",
     "typescript": "5.5.3"
   }
 }

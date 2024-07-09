@@ -7,7 +7,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "./build",
-    "rootDir": "./src",
+    "rootDir": ".",
     "experimentalDecorators": true,
     "strict": true,
     "esModuleInterop": true,
@@ -17,7 +17,11 @@
   },
   "include": [
     "src/**/*.ts",
-    // "netlify/functions/**/*.ts"
+    "netlify/functions/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "build"
   ]
   
 }
