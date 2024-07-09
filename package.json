@@ -15,6 +15,7 @@
     "h5wasm": "^0.7.5",
     "node-cron": "^3.0.3",
     "rimraf": "^5.0.8",
+    "serverless-http": "^3.2.0",
     "yahoo-finance2": "^2.11.3"
   },
   "devDependencies": {
