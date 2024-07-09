@@ -7,7 +7,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "./build",
-    "rootDir": "./src",
+    "rootDir": "api",
     "experimentalDecorators": true,
     "strict": true,
     "esModuleInterop": true,

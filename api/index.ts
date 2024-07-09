@@ -4,7 +4,7 @@ import { createServer } from "http";
 import * as CONFIG from "./config";
 import { startUp, daily, dailyEx, quote, quoteEx } from "./scraper/script";
 import cron from 'node-cron';
-import router from "./api/router";
+import router from "./routes/router";
 
 const app = express();
 app.use(express.json());
@@ -25,6 +25,8 @@ cron.schedule(quoteEx, quoteArgs, {
     timezone: 'Etc/UTC'
 });
 
-const httpServer = createServer(app).listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Started server at ${HOST}:${PORT}`);
 });
+
+module.exports = app;

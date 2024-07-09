@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { promises as fsPromises } from 'fs';
 
-const logDir = './src/logs';
+const logDir = './api/logs';
 
 export const isMarketHours = (timestamp: Date) => {
     const formattedTime = timestamp.toISOString().split('T')[1].split('.')[0];
@@ -22,7 +22,7 @@ export const resetFile = (timestamp: Date) => {
     const curFile = logDir + '/' + curDate + '.txt';
 
     if (fs.existsSync(curFile)) {
-        fs.renameSync(curFile, './src/archive/' + curDate + '.txt');
+        fs.renameSync(curFile, './api/archive/' + curDate + '.txt');
     }
 
     fs.writeFileSync(curFile, '', 'utf-8');
