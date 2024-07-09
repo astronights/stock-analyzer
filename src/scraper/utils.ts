@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { promises as fsPromises } from 'fs';
 
-const logDir = './src/logs';
+const logDir = '../src/logs';
 
 export const isMarketHours = (timestamp: Date) => {
     const formattedTime = timestamp.toISOString().split('T')[1].split('.')[0];

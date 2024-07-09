@@ -17,7 +17,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "netlify/functions/**/*.ts"
+    // "netlify/functions/**/*.ts"
   ]
   
 }
