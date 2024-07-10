@@ -3,10 +3,11 @@ import cors from "cors";
 import * as CONFIG from "../src/config";
 import { startUp, daily, dailyEx, quote, quoteEx } from "../src/scraper/script";
 import cron from 'node-cron';
+import bodyParser from 'body-parser';
 import router from "../src/api/router";
 
 const app = express();
-app.use(express.json());
+app.use(bodyParser.json());
 app.use(cors({ origin: "*" }));
 app.use("/", router);
 
