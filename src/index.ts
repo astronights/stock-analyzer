@@ -19,11 +19,11 @@ const assets = startUp();
 export const quoteArgs = quote.bind(null, assets);
 
 cron.schedule(dailyEx, daily, {
-    timezone: 'Etc/UTC'
+    timezone: 'America/New_York'
 });
 
 cron.schedule(quoteEx, quoteArgs, {
-    timezone: 'Etc/UTC'
+    timezone: 'America/New_York'
 });
 
 const httpServer = createServer(app).listen(PORT, () => {

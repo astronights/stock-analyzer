@@ -16,12 +16,13 @@ const getTick = (quote: Quote) => {
 
 export const getQuotes = (assets: string[]) => {
 
-    assets.forEach(async (asset) => {
+    return(assets.forEach(async (asset) => {
         const curQuote = await yahooFinance.quoteCombine(asset);
         console.log(curQuote);
         const tick = getTick(curQuote);
         console.log(tick);
-    })
+        return tick;
+    }));
 
 }
 
