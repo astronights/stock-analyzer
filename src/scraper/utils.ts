@@ -25,7 +25,7 @@ export const resetFile = (timestamp: Date) => {
         fs.renameSync(curFile, './src/archive/' + curDate + '.txt');
     }
 
-    fs.writeFileSync(curFile, '', 'utf-8');
+    fs.appendFileSync(curFile, '', 'utf-8');
 }
 
 async function appendToFile(filePath: string, content: string): Promise<void> {
