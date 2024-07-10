@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "clean": "rimraf build",
-    "build": "npm run clean && tsc",
-    "start": "npm run build && node build/api/index.js"
+    "build": "npm run clean && tsc && npm run copy-files",
+    "start": "npm run build && node build/api/index.js",
+    "copy-files": "copyfiles -u 1 src/page.html src/archive/** src/data/** src/logs/** build/src"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@types/node": "20.14.10",
+    "copyfiles": "^2.4.1",
     "typescript": "5.5.3"
   }
 }

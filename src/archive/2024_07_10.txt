@@ -1,0 +1,3 @@
+[2024-07-10 01:47:43.037Z] Starting Process
+[2024-07-10 01:47:43.039Z] Assets: AA, HDB, INDA, EPI
+[2024-07-10 01:47:43.040Z] Market is yet to open...

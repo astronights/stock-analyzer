@@ -12,7 +12,7 @@ export class AssetController {
     assetFile: string;
 
     constructor() {
-        this.assetFile = './api/data/assets.txt';
+        this.assetFile = './src/data/assets.txt';
         this.router.get(this.path, this.getAssets.bind(this));
         this.router.post(this.path, this.addAsset.bind(this));
     }
