@@ -6,25 +6,22 @@ export class LogController {
     path = '/';
     router = Router();
 
-    logFile: string;
-    todayDt: string;
-
     constructor() {
-        this.todayDt = new Date().toISOString().split('T')[0].split('-').join('_');
-        this.logFile = path.join('./logs', + this.todayDt + '.txt');
         this.router.get(this.path, this.reloadLogs.bind(this));
         this.router.get(this.path + 'live', this.getLogs.bind(this));
         this.router.get(this.path + ':date', this.getDateLogs.bind(this));
     }
 
     public async reloadLogs(req: Request, res: Response): Promise<Response> {
-        res.status(200).sendFile(path.join(__dirname, './src/page.html'));
+        res.status(200).sendFile(path.join(__dirname, '../page.html'));
     };
 
     public async getLogs(req: Request, res: Response): Promise<Response> {
-        if (fs.existsSync(this.logFile)) {
+        const todayDt = new Date().toISOString().split('T')[0].split('-').join('_');
+        const logFile = path.join('./logs', todayDt + '.txt');
+        if (fs.existsSync(logFile)) {
             try {
-                const data = fs.readFileSync(this.logFile, 'utf8');
+                const data = fs.readFileSync(logFile, 'utf8');
                 res.setHeader('Content-Type', 'text/plain');
                 res.status(200).send(data);
             } catch (err) {
@@ -32,7 +29,7 @@ export class LogController {
                 res.status(500).send('Internal Server Error');
             }
         } else {
-            res.status(404).send('File not found');
+            res.status(404).send(`File ${logFile} not found`);
         }
     };
 

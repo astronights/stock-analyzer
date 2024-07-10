@@ -6,7 +6,7 @@
     "clean": "rimraf build",
     "build": "npm run clean && tsc && npm run copy-files",
     "start": "npm run build && node build/index.js",
-    "copy-files": "copyfiles -u 1 src/page.html build/src"
+    "copy-files": "copyfiles -u 1 src/page.html build"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
