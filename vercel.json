@@ -11,5 +11,6 @@
         "src": "/(.*)",
         "dest": "build/api/index.js"
       }
-    ]
+    ],
+    "buildCommand": "npm run build"
   }
