@@ -18,7 +18,7 @@ export class LogController {
     }
 
     public async reloadLogs(req: Request, res: Response): Promise<Response> {
-        res.status(200).sendFile(path.join(__dirname, '../../src/page.html'));
+        res.status(200).sendFile(path.join(__dirname, './src/page.html'));
     };
 
     public async getLogs(req: Request, res: Response): Promise<Response> {
