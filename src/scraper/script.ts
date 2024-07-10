@@ -1,6 +1,5 @@
-import yahooFinance from 'yahoo-finance2';
 import * as fs from 'fs';
-
+import { getQuotes } from './yf';
 import { isMarketHours, log, resetFile } from './utils'
 
 const assetFile = './src/data/assets.txt'
@@ -27,7 +26,8 @@ export const daily = () => {
 
 export const quote = (assets: string[]) => {
     log(new Date(), `Fetching market quotes: ${assets}`)
+    const quotes = getQuotes(assets);
 }
 
 export const dailyEx = '0 59 8 * * *'
-export const quoteEx = '0 */1 9-16 * * *';
+export const quoteEx = '0 */1 9-16 * * 1-5';

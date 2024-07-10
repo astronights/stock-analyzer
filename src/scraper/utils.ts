@@ -1,7 +1,9 @@
 import * as fs from 'fs';
+import * as path from 'path';
 import { promises as fsPromises } from 'fs';
 
-const logDir = './src/logs';
+const logDir = './logs';
+const archiveDir = './archive';
 
 export const isMarketHours = (timestamp: Date) => {
     const formattedTime = timestamp.toISOString().split('T')[1].split('.')[0];
@@ -11,7 +13,7 @@ export const isMarketHours = (timestamp: Date) => {
 export const log = (timestamp: Date, message: string) => {
     const formattedTime = timestamp.toISOString().replace('T', ' ');
     const curDate = formattedTime.split(' ')[0].split('-').join('_');
-    const curFile = logDir + '/' + curDate + '.txt';
+    const curFile = path.join(logDir, curDate + '.txt');
 
     const logText = `[${formattedTime}] ${message}\n`
     appendToFile(curFile, logText);
@@ -19,11 +21,16 @@ export const log = (timestamp: Date, message: string) => {
 
 export const resetFile = (timestamp: Date) => {
     const curDate = timestamp.toISOString().split('T')[0].split('-').join('_')
-    const curFile = logDir + '/' + curDate + '.txt';
+    const curFile = path.join(logDir, curDate + '.txt');
 
-    if (fs.existsSync(curFile)) {
-        fs.renameSync(curFile, './src/archive/' + curDate + '.txt');
-    }
+    const oldLogs = fs.readdirSync(logDir)
+
+    oldLogs.filter((file) => file.endsWith('.txt')).forEach((file) => {
+        const lf = path.join(logDir, file);
+        const af = path.join(archiveDir, file);
+
+        fs.renameSync(lf, af);
+    })
 
     fs.writeFileSync(curFile, '', 'utf-8');
 }

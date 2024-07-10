@@ -1,10 +1,6 @@
+import path from 'path';
 import * as fs from 'fs';
 import { Request, Response, Router } from 'express';
-import { promisify } from 'util';
-import path from 'path';
-
-const readFile = promisify(fs.readFile);
-const appendFile = promisify(fs.appendFile);
 
 export class LogController {
     path = '/';
@@ -15,7 +11,7 @@ export class LogController {
 
     constructor() {
         this.todayDt = new Date().toISOString().split('T')[0].split('-').join('_');
-        this.logFile = './src/logs/' + this.todayDt + '.txt';
+        this.logFile = path.join('./logs', + this.todayDt + '.txt');
         this.router.get(this.path, this.reloadLogs.bind(this));
         this.router.get(this.path + 'live', this.getLogs.bind(this));
         this.router.get(this.path + ':date', this.getDateLogs.bind(this));
@@ -41,7 +37,7 @@ export class LogController {
     };
 
     public async getDateLogs(req: Request, res: Response): Promise<Response> {
-        const oldLogs = './src/archive/' + req.params.date + '.txt';
+        const oldLogs = path.join('./archive', req.params.date + '.txt');
         if (fs.existsSync(oldLogs)) {
             try {
                 const data = fs.readFileSync(oldLogs, 'utf8');
