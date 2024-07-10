@@ -25,8 +25,8 @@ cron.schedule(quoteEx, quoteArgs, {
     timezone: 'Etc/UTC'
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on ${HOST}:${PORT}`)
-})
+// app.listen(PORT, () => {
+//     console.log(`Server running on ${HOST}:${PORT}`)
+// })
 
 module.exports = app;
