@@ -3,7 +3,7 @@ import * as fs from 'fs';
 
 import { isMarketHours, log, resetFile } from './utils'
 
-const assetFile = './api/data/assets.txt'
+const assetFile = './src/data/assets.txt'
 
 export const startUp = () => {
 
