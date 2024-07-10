@@ -1,9 +1,10 @@
 import * as fs from 'fs';
-import * as path from 'path';
+import path from 'path';
 import { promises as fsPromises } from 'fs';
 
 const logDir = './logs';
 const archiveDir = './archive';
+const priceDir = './prices';
 
 export const isMarketHours = (timestamp: Date) => {
     const formattedTime = timestamp.toISOString().split('T')[1].split('.')[0];
@@ -41,4 +42,13 @@ async function appendToFile(filePath: string, content: string): Promise<void> {
     } catch (err) {
         console.error('Error appending content:', err);
     }
+}
+
+export const createDirs = (assets: string[]) => {
+    assets.forEach((asset) => {
+        const fpath = path.join(priceDir, asset)
+        if (!fs.existsSync(fpath)) {
+            fs.mkdirSync(fpath);
+        }
+    })
 }

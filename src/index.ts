@@ -6,6 +6,7 @@ import cron from 'node-cron';
 import bodyParser from 'body-parser';
 import router from "./api/router";
 import { createServer } from "http";
+import { createDirs } from "./scraper/utils";
 
 const app = express();
 app.use(bodyParser.json());
@@ -16,6 +17,7 @@ const HOST = CONFIG.HOST;
 const PORT = parseInt(CONFIG.PORT);
 
 const assets = startUp();
+createDirs(assets);
 export const quoteArgs = quote.bind(null, assets);
 
 cron.schedule(dailyEx, daily, {

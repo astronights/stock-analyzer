@@ -1,27 +1,20 @@
-import { ParquetSchema, ParquetWriter } from 'parquetjs';
 import { Quote } from "yahoo-finance2/dist/esm/src/modules/quote";
+import { Tick, tickSchema } from '../types';
+import * as fs from 'fs';
 import path from 'path';
 
 const priceDir = './prices';
 
-const tickSchema = new ParquetSchema({
-    symbol: { type: 'UTF8' },
-    low: { type: 'DOUBLE' }
-})
+export const writeQuote = (tick: Tick) => {
 
-export const writeQuote = (file: File, quote) => {
+    const symbol = tick.symbol;
+    const dt = tick.regularMarketTime.toISOString().split('T')[0].split('-').join('_');
 
-    const symbol = quote.symbol;
-    const dt = quote.regularMarketTime?.toUTCString().split('T')[0].split('-').join('_');
+    const csvFile = path.join(priceDir, symbol, `${dt}.csv`)
 
-    ParquetWriter.openFile(tickSchema, path.join(priceDir, symbol, `${dt}.parquet`))
-        .then(async (writer) => {
-            await writer.appendRow({
-                symbol: quote.symbol,
-                low: quote.low
-            });
-            writer.close();
+    if (!fs.existsSync(csvFile)) {
+        fs.writeFileSync(csvFile, Object.keys(tick).join(',') + '\n');
+    }
 
-        });
-
+    fs.appendFileSync(csvFile, Object.values(tick).join(',') + '\n');
 }
