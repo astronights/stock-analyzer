@@ -1,6 +1,8 @@
 import yahooFinance from 'yahoo-finance2';
 import { Quote } from 'yahoo-finance2/dist/esm/src/modules/quote';
 
+import { writeQuote } from './io';
+
 const getTick = (quote: Quote) => {
     return {
         currency: quote.currency,
@@ -13,10 +15,13 @@ const getTick = (quote: Quote) => {
 }
 
 export const getQuotes = (assets: string[]) => {
-    return assets.map(async (asset) => {
+
+    assets.forEach(async (asset) => {
         const curQuote = await yahooFinance.quoteCombine(asset);
         console.log(curQuote);
         const tick = getTick(curQuote);
+        console.log(tick);
     })
+
 }
 

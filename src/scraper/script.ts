@@ -29,5 +29,5 @@ export const quote = (assets: string[]) => {
     const quotes = getQuotes(assets);
 }
 
-export const dailyEx = '0 59 8 * * *'
+export const dailyEx = '0 55 8 * * 1-5'
 export const quoteEx = '0 */1 9-16 * * 1-5';

@@ -14,13 +14,14 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "fs": "^0.0.1-security",
-    "h5wasm": "^0.7.5",
     "node-cron": "^3.0.3",
+    "parquetjs": "^0.11.2",
     "rimraf": "^5.0.8",
     "yahoo-finance2": "^2.11.3"
   },
   "devDependencies": {
     "@types/node": "20.14.10",
+    "@types/parquetjs": "^0.10.6",
     "copyfiles": "^2.4.1",
     "typescript": "5.5.3"
   }
