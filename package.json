@@ -17,10 +17,11 @@
     "node-cron": "^3.0.3",
     "parquetjs": "^0.11.2",
     "rimraf": "^5.0.8",
-    "yahoo-finance2": "^2.11.3"
+    "yahoo-finance2": "^2.11.3",
+    "typescript": "^5.5.3"
   },
   "devDependencies": {
-    "@types/node": "20.14.10",
+    "@types/node": "^20.14.10",
     "@types/parquetjs": "^0.10.6",
     "copyfiles": "^2.4.1",
     "typescript": "^5.5.3"
