@@ -1,5 +1,5 @@
 import { Quote } from "yahoo-finance2/dist/esm/src/modules/quote";
-import { Tick, tickSchema } from '../types';
+import { Tick } from '../types';
 import * as fs from 'fs';
 import path from 'path';
 

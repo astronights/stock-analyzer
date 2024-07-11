@@ -16,7 +16,6 @@
     "express": "^4.19.2",
     "fs": "^0.0.1-security",
     "node-cron": "^3.0.3",
-    "parquetjs": "^0.11.2",
     "rimraf": "^5.0.8",
     "typescript": "^5.5.3",
     "yahoo-finance2": "^2.11.3"

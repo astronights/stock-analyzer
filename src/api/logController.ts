@@ -17,19 +17,20 @@ export class LogController {
     };
 
     public async getLogs(req: Request, res: Response): Promise<Response> {
-        const todayDt = new Date().toISOString().split('T')[0].split('-').join('_');
-        const logFile = path.join('./logs', todayDt + '.txt');
-        if (fs.existsSync(logFile)) {
-            try {
-                const data = fs.readFileSync(logFile, 'utf8');
+        const files = fs.readdirSync('./logs');
+
+        let check = false;
+
+        for (const file of files) {
+            if (path.extname(file) === '.txt') {
+                const data = fs.readFileSync(path.join('./logs', file), 'utf8');
                 res.setHeader('Content-Type', 'text/plain');
                 res.status(200).send(data);
-            } catch (err) {
-                console.error('Error reading file:', err);
-                res.status(500).send('Internal Server Error');
+                check = true;
             }
-        } else {
-            res.status(404).send(`File ${logFile} not found`);
+        }
+        if (!check) {
+            res.status(404).send(`No Log Files available: ${files.join(",")}`);
         }
     };
 

@@ -1,6 +1,5 @@
 import { Quote } from "yahoo-finance2/dist/esm/src/modules/quote";
-import { toZonedTime } from 'date-fns-tz';
-import { ParquetSchema } from "parquetjs";
+import { toZonedTime, formatInTimeZone } from 'date-fns-tz';
 
 export interface Tick {
     symbol: string;
@@ -33,40 +32,11 @@ export interface Tick {
     priceToBook?: number;
 }
 
-export const tickSchema = new ParquetSchema({
-    symbol: { type: 'UTF8' },
-    marketState: { type: 'UTF8' },
-    regularMarketChangePercent: { type: 'DOUBLE'},
-    regularMarketPrice: { type: 'DOUBLE', optional: true }, 
-    regularMarketChange: { type: 'DOUBLE', optional: true },
-    regularMarketTime: { type: 'TIMESTAMP_MICROS' },
-    regularMarketOpen: { type: 'DOUBLE', optional: true },
-    regularMarketDayHigh: { type: 'DOUBLE', optional: true },
-    regularMarketDayLow: { type: 'DOUBLE', optional: true },
-    regularMarketVolume: { type: 'INT64', optional: true }, 
-    bid: { type: 'DOUBLE', optional: true },
-    ask: { type: 'DOUBLE', optional: true },
-    bidSize: { type: 'INT64', optional: true },
-    askSize: { type: 'INT64', optional: true },
-    fiftyTwoWeekLowChange: { type: 'DOUBLE', optional: true },
-    fiftyTwoWeekLowChangePercent: { type: 'DOUBLE', optional: true },
-    fiftyTwoWeekHighChange: { type: 'DOUBLE', optional: true },
-    fiftyTwoWeekHighChangePercent: { type: 'DOUBLE', optional: true },
-    trailingPE: { type: 'DOUBLE', optional: true },
-    priceEpsCurrentYear: { type: 'DOUBLE', optional: true },
-    fiftyDayAverageChange: { type: 'DOUBLE', optional: true },
-    fiftyDayAverageChangePercent: { type: 'DOUBLE', optional: true },
-    twoHundredDayAverageChange: { type: 'DOUBLE', optional: true },
-    twoHundredDayAverageChangePercent: { type: 'DOUBLE', optional: true },
-    marketCap: { type: 'INT64', optional: true },
-    forwardPE: { type: 'DOUBLE', optional: true },
-    priceToBook: { type: 'DOUBLE', optional: true }
-});
-
 export const getTick = (quote: Quote): Tick => {
 
     const regularMarketTimeUtc = quote.regularMarketTime ? new Date(quote.regularMarketTime) : new Date();
     const regularMarketTimeInZone = toZonedTime(regularMarketTimeUtc, quote.exchangeTimezoneName);
+    const formattedTime = formatInTimeZone(regularMarketTimeInZone, quote.exchangeTimezoneName, 'yyyy-MM-dd HH:mm:ssXXX');
     return {
         symbol: quote.symbol,
         quoteType: quote.quoteType,
