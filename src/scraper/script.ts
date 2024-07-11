@@ -22,7 +22,6 @@ export const startUp = () => {
 }
 
 export const daily = () => {
-    log(new Date(), 'Resetting logs')
     resetFile(new Date());
 }
 
