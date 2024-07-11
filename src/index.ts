@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import * as CONFIG from "./config";
-import { startUp, daily, dailyEx, quote, quoteEx } from "./scraper/script";
+import { startUp, daily, dailyEx, quote, quoteEx, post, postEx } from "./scraper/script";
 import cron from 'node-cron';
 import bodyParser from 'body-parser';
 import router from "./api/router";
@@ -25,6 +25,10 @@ cron.schedule(dailyEx, daily, {
 });
 
 cron.schedule(quoteEx, quoteArgs, {
+    timezone: 'America/New_York'
+});
+
+cron.schedule(postEx, post, {
     timezone: 'America/New_York'
 });
 

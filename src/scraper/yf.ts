@@ -1,6 +1,6 @@
 import yahooFinance from 'yahoo-finance2';
 
-import { writeQuote } from './io';
+import { writeQuote, writeCsvsToParquet } from './io';
 import { getTick } from '../types';
 
 export const getQuotes = (assets: string[]) => {
