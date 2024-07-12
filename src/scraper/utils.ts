@@ -1,26 +1,25 @@
 import * as fs from 'fs';
 import path from 'path';
-import { promises as fsPromises } from 'fs';
 
 const logDir = './logs';
 const archiveDir = './archive';
 const priceDir = './prices';
 
-export const isMarketHours = (timestamp: Date) => {
+export const isMarketHours = (timestamp: Date): boolean => {
     const formattedTime = timestamp.toISOString().split('T')[1].split('.')[0];
     return (formattedTime >= '13:30:00') && (formattedTime < '20:00:00')
 }
 
-export const log = (timestamp: Date, message: string) => {
+export const log = (timestamp: Date, message: string): string => {
     const formattedTime = timestamp.toISOString().replace('T', ' ');
     const curDate = formattedTime.split(' ')[0].split('-').join('_');
     const curFile = path.join(logDir, curDate + '.txt');
 
     const logText = `[${formattedTime}] ${message}\n`
-    appendToFile(curFile, logText);
+    return appendToFile(curFile, logText);
 }
 
-export const resetFile = (timestamp: Date) => {
+export const resetFile = (timestamp: Date): string => {
     const curDate = timestamp.toISOString().split('T')[0].split('-').join('_')
     const curFile = path.join(logDir, curDate + '.txt');
 
@@ -34,13 +33,16 @@ export const resetFile = (timestamp: Date) => {
     })
 
     fs.writeFileSync(curFile, '', 'utf-8');
+    return `Created ${curFile}`
 }
 
-async function appendToFile(filePath: string, content: string): Promise<void> {
+const appendToFile = (filePath: string, content: string): string => {
     try {
-        await fsPromises.appendFile(filePath, content, 'utf-8');
+        fs.appendFileSync(filePath, content, 'utf-8');
+        return 'Success';
     } catch (err) {
         console.error('Error appending content:', err);
+        return 'Error';
     }
 }
 
@@ -51,4 +53,5 @@ export const createDirs = (assets: string[]) => {
             fs.mkdirSync(fpath);
         }
     })
+    return assets;
 }

@@ -17,18 +17,17 @@ const HOST = CONFIG.HOST;
 const PORT = parseInt(CONFIG.PORT);
 
 const assets = startUp();
-createDirs(assets);
-export const quoteArgs = quote.bind(null, assets);
+const createdDirs = createDirs(assets);
 
 cron.schedule(dailyEx, daily, {
     timezone: 'America/New_York'
 });
 
-cron.schedule(quoteEx, quoteArgs, {
+cron.schedule(quoteEx, async () => { await quote(assets); }, {
     timezone: 'America/New_York'
 });
 
-cron.schedule(postEx, post, {
+cron.schedule(postEx, async () => { await post(assets); }, {
     timezone: 'America/New_York'
 });
 

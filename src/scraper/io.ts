@@ -7,7 +7,7 @@ import { Tick, tickSchema } from '../types';
 
 const priceDir = './prices';
 
-export const writeQuote = (tick: Tick) => {
+export const writeQuote = (tick: Tick): string => {
 
     const symbol = tick.symbol;
     const dt = new Date().toISOString().split('T')[0].split('-').join('_');
@@ -18,9 +18,10 @@ export const writeQuote = (tick: Tick) => {
     }
 
     fs.appendFileSync(csvFile, Object.values(tick).join(',') + '\n');
+    return csvFile;
 }
 
-export const writeCsvsToParquet = async (assets: string[]) => {
+export const writeCsvsToParquet = async (assets: string[]): Promise<string[]> => {
     for (const asset of assets) {
         const apDir = path.join(priceDir, asset);
 
@@ -28,13 +29,14 @@ export const writeCsvsToParquet = async (assets: string[]) => {
             const apFiles = fs.readdirSync(apDir);
             for (const apFile of apFiles.filter((file) => file.endsWith('.csv'))) {
                 const csvData = await readCsv(path.join(apDir, apFile));
-                await writeParquet(csvData, path.join(apDir, apFile.replace('.csv', '.parquet')));
+                const pFile = await writeParquet(csvData, path.join(apDir, apFile.replace('.csv', '.parquet')));
                 await fs.promises.rm(path.join(apDir, apFile));
             }
         } catch (err) {
             console.error(`Unable to read ${asset} price files:`, err);
         }
     }
+    return assets;
 }
 
 const readCsv = (filePath: string) => {
@@ -52,7 +54,7 @@ const readCsv = (filePath: string) => {
     });
 }
 
-const writeParquet = async (data, filePath: string) => {
+const writeParquet = async (data, filePath: string): Promise<string> => {
     const writer = await ParquetWriter.openFile(tickSchema, filePath);
     for (const row of data) {
         const cleanedRow = {};
@@ -64,4 +66,5 @@ const writeParquet = async (data, filePath: string) => {
         await writer.appendRow(cleanedRow);
     }
     await writer.close();
+    return filePath;
 }

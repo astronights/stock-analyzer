@@ -1,13 +1,14 @@
 import yahooFinance from 'yahoo-finance2';
 
-import { writeQuote, writeCsvsToParquet } from './io';
+import { writeQuote } from './io';
 import { getTick } from '../types';
 
-export const getQuotes = (assets: string[]) => {
-    return (assets.forEach(async (asset) => {
+export const getQuotes = (assets: string[]): Promise<string[]> => {
+    return Promise.all(assets.map(async (asset) => {
         const curQuote = await yahooFinance.quoteCombine(asset);
         const tick = getTick(curQuote);
-        writeQuote(tick);
+        const csvFile = writeQuote(tick);
+        return asset;
     }));
 
 }
