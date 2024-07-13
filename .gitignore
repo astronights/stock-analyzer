@@ -21,7 +21,8 @@
 archive/*.txt
 logs/*.txt
 prices/**/*.csv
-prices/**/*.parquet
+**/*.parquet
 
 # python
 **/*.ipynb_checkpoints
+**/__pycache__

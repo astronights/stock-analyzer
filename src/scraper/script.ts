@@ -42,5 +42,5 @@ export const post = async(assets: string[]): Promise<string> => {
 }
 
 export const dailyEx = '0 55 8 * * 1-5'
-export const quoteEx = '0 */1 9-16 * * 1-5';
+export const quoteEx = '0 */1 9-15 * * 1-5';
 export const postEx = '0 5 16 * * 1-5';
