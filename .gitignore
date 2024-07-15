@@ -20,7 +20,7 @@
 # others
 archive/*.txt
 logs/*.txt
-prices/**/*.csv
+/**/*.csv
 **/*.parquet
 
 # python
