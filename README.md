@@ -12,7 +12,7 @@ The project is created with the following stack:
 If you would like to run the project yourself, please edit the `src/data/assets.txt` file and run the following:
 
 ```bash
-npm run dev
+npm start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see live logs.
