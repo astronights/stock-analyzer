@@ -24,3 +24,5 @@ def download_parquets():
                 print(f'File downloaded: {out_dir}; delete: {del_res.status_code}')
             else:
                 print(f'Failed to download {asset} {pfile}: {response.status_code}')
+
+download_parquets()
